@@ -6,7 +6,7 @@ import "./App.css";
 function App() {
   const [weather, setWeather] = useState([]);
 
-  // useEffect to call api to get weather data for toronto
+  // useEffect to call api to get weather data for Toronto once on page load
   useEffect(() => {
     axios({
       // URL with api key and query for Toronto
@@ -30,7 +30,7 @@ function App() {
       {weather.map( (temp, key) => {
         // Returning the data so we can see it on page
         return (
-          <div className="weather">
+          <div className="weather" key={key}>
             <h1>
               {/* Using moment to format date */}
               <Moment format="ddd MMMM DD, hh:mm A" unix>{temp.dt}</Moment>
@@ -42,7 +42,7 @@ function App() {
               alt={temp.weather[0].description}
             />
             {/* Rounding temp */}
-            <p>{Math.round(temp.main.feels_like)} °C</p>
+            <h2>{Math.round(temp.main.feels_like)} °C</h2>
           </div>
         );
       })}
